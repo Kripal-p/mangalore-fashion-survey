@@ -92,6 +92,8 @@ const state = {
   prices: {}
 };
 
+let isSubmitting = false;
+
 const screens = [...document.querySelectorAll(".survey-screen")];
 const $ = id => document.getElementById(id);
 
@@ -260,6 +262,19 @@ function collectPayload(){
   };
 }
 async function submit(){
+  // Prevent double-taps / repeated submissions while the request is in flight.
+  if(isSubmitting) return;
+  isSubmitting = true;
+
+  const submitBtn = $("nextBtn");
+  const originalSubmitLabel = "Submit survey <b>✓</b>";
+
+  if(submitBtn){
+    submitBtn.disabled = true;
+    submitBtn.setAttribute("aria-busy","true");
+    submitBtn.innerHTML = '<span class="submit-loading"><span class="submit-spinner" aria-hidden="true"></span>Submitting…</span>';
+  }
+
   const payload=collectPayload();
   localStorage.setItem("mangaloreFashionSurveySubmitted",state.responseId);
 
@@ -273,6 +288,14 @@ async function submit(){
       });
     }catch(e){
       console.warn("Submission request failed",e);
+      isSubmitting = false;
+      if(submitBtn){
+        submitBtn.disabled = false;
+        submitBtn.removeAttribute("aria-busy");
+        submitBtn.innerHTML = originalSubmitLabel;
+      }
+      showError("We couldn't submit your response. Please try again.");
+      return;
     }
   }
 
