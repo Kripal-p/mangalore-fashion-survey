@@ -125,9 +125,7 @@ function bindOptions(){
           const current=Array.isArray(state.answers[field])?state.answers[field]:[];
           if(btn.classList.contains("selected")){ setMulti(field,value); btn.classList.remove("selected"); if(field==="firstVisitTriggers") renderTopTrigger(); }
           else {
-            const max=group.classList.contains("max3")?3:Infinity;
-            if(current.length>=max){ showError(`Please select up to ${max}.`); return; }
-            setMulti(field,value); btn.classList.add("selected"); if(field==="firstVisitTriggers") renderTopTrigger();
+            setMulti(field,value); btn.classList.add("selected");
           }
         } else {
           group.querySelectorAll("button").forEach(b=>b.classList.remove("selected"));
@@ -230,6 +228,22 @@ function findProductLabel(id){
 }
 
 function validateStep(){ clearError(); return true; }
+function showError(msg){$("error").textContent=msg}
+function clearError(){$("error").textContent=""}
+
+function showStep(n){
+  state.step=n;
+  screens.forEach(s=>s.hidden=Number(s.dataset.step)!==n);
+  $("screenNo").textContent=n;
+  $("progress").style.width=`${n*10}%`;
+  $("backBtn").style.visibility=n===1?"hidden":"visible";
+  $("nextBtn").textContent="";
+  $("nextBtn").innerHTML=n===10?"Submit survey <b>✓</b>":`Continue <b>→</b>`;
+  if(n===7)renderProducts();
+  if(n===8)renderStyles();
+  if(n===9)renderPrices();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
 function collectPayload(){
   return {
     responseId:state.responseId,timestamp:new Date().toISOString(),
