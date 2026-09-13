@@ -41,3 +41,36 @@ The landing screen is removed from the DOM when the respondent starts the survey
 
 ## Navigation behavior
 All survey screens are freely traversable. Respondents may continue without answering, use Back to correct previous answers, and submit without completing every field. The submission contains whatever answers are present.
+
+
+## Google Sheets backend — dynamic setup
+
+1. Create a new Google Sheet for survey responses.
+2. Open **Extensions → Apps Script**.
+3. Replace the Apps Script editor contents with the `Code.gs` from this package.
+4. Save the project.
+5. Deploy → **New deployment** → **Web app**.
+6. Set **Execute as: Me**.
+7. Set **Who has access: Anyone**.
+8. Deploy and copy the Web App URL ending in `/exec`.
+9. Open `survey.js` and replace:
+   `PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE`
+   with the deployed `/exec` URL.
+10. Upload the updated `survey.js` to GitHub Pages.
+
+The backend automatically creates these tabs:
+
+- **Responses** — one row per completed/submitted survey.
+- **Products** — one row per selected product, including fit/look/size/price.
+- **MultiSelect** — one row per selected value for multi-select questions.
+- **Metadata** — backend version and last-response information.
+
+No Google API key or service-account credential belongs in the GitHub frontend.
+
+### Important after changing Code.gs
+
+If an Apps Script Web App was already deployed, use **Deploy → Manage deployments → Edit** and create a new version/redeploy the Web App. Keep using the same `/exec` URL where possible.
+
+### Testing
+
+Open the `/exec` URL in a browser. You should see a small JSON response showing that the survey service is active. Then submit one test survey and verify that a new row appears in `Responses` and the related product/multi-select rows appear in the other tabs.
