@@ -162,7 +162,7 @@ function renderProducts(){
     btn.onclick=()=>{
       const id=btn.dataset.product, i=state.products.indexOf(id);
       if(i>=0){state.products.splice(i,1);btn.classList.remove("selected")}
-      else {if(state.products.length>=5){showError("Please Select any products you would be most likely to buy from a new store.");return} state.products.push(id);btn.classList.add("selected")}
+      else {if(state.products.length>=5){showError("Please select up to 5 products.");return} state.products.push(id);btn.classList.add("selected")}
       clearError();
     };
   });
@@ -228,6 +228,22 @@ function findProductLabel(id){
 }
 
 function validateStep(){ clearError(); return true; }
+function showError(msg){$("error").textContent=msg}
+function clearError(){$("error").textContent=""}
+
+function showStep(n){
+  state.step=n;
+  screens.forEach(s=>s.hidden=Number(s.dataset.step)!==n);
+  $("screenNo").textContent=n;
+  $("progress").style.width=`${n*10}%`;
+  $("backBtn").style.visibility=n===1?"hidden":"visible";
+  $("nextBtn").textContent="";
+  $("nextBtn").innerHTML=n===10?"Submit survey <b>✓</b>":`Continue <b>→</b>`;
+  if(n===7)renderProducts();
+  if(n===8)renderStyles();
+  if(n===9)renderPrices();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
 function collectPayload(){
   return {
     responseId:state.responseId,timestamp:new Date().toISOString(),
