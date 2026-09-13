@@ -2,7 +2,7 @@
   Mangalore Fashion Survey
   Frontend only. Set APPS_SCRIPT_URL below after deploying Code.gs.
 */
-const APPS_SCRIPT_URL = ""; // Example: https://script.google.com/macros/s/XXXXXXXX/exec
+const APPS_SCRIPT_URL = "PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE"; // Example: https://script.google.com/macros/s/XXXXXXXX/exec
 
 const PRODUCT_DATA = {
   men: {
