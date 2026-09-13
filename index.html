@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f4efe8">
+<title>ATT MIRE — Your Style. Our Next Chapter.</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Playfair+Display:wght@500;600&display=swap');
+
+:root{--cream:#f4efe8;--ink:#101010}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{background:var(--cream);color:var(--ink);font-family:"DM Sans",Arial,sans-serif}
+
+.page{
+  width:100vw;height:100svh;min-height:500px;position:relative;overflow:hidden;
+  display:grid;place-items:center;isolation:isolate;
+}
+.page:before{
+  content:"";position:absolute;inset:-30%;z-index:-2;
+  background:
+    radial-gradient(ellipse at 8% 18%,rgba(255,255,255,.78) 0 7%,transparent 27%),
+    radial-gradient(ellipse at 94% 76%,rgba(255,255,255,.60) 0 8%,transparent 29%),
+    radial-gradient(ellipse at 65% 4%,rgba(210,199,184,.18) 0 7%,transparent 27%),
+    linear-gradient(112deg,transparent 30%,rgba(100,88,73,.04) 31%,transparent 34%),
+    linear-gradient(72deg,transparent 65%,rgba(100,88,73,.03) 67%,transparent 70%);
+  filter:blur(18px);
+}
+
+.content{
+  width:min(900px,92vw);height:100%;
+  padding:clamp(14px,2.4vh,28px) 14px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;
+}
+
+/* The cropped asset + larger width makes ATT MIRE the dominant visual. */
+.brand-logo{
+  display:block;
+  width:min(650px,78vw);
+  height:auto;
+  max-height:27vh;
+  object-fit:contain;
+  margin-bottom:clamp(9px,1.2vh,15px);
+  opacity:0;
+  transform:translateY(12px) scale(.97);
+  animation:logoIn .85s cubic-bezier(.2,.75,.2,1) .05s forwards;
+  filter:drop-shadow(0 7px 13px rgba(0,0,0,.035));
+}
+
+h1{
+  margin:0;
+  max-width:650px;
+  font-family:"Playfair Display",Georgia,serif;
+  font-size:clamp(27px,3.2vw,42px);
+  line-height:.98;font-weight:500;letter-spacing:-.038em;
+  opacity:0;transform:translateY(10px);
+  animation:fadeUp .7s ease .3s forwards;
+}
+
+.divider{
+  width:45px;height:1px;background:var(--ink);
+  margin:clamp(11px,1.5vh,16px) 0;
+  opacity:0;transform:scaleX(0);
+  animation:lineIn .5s ease .62s forwards;
+}
+.cta{
+  min-width:min(290px,62vw);height:42px;padding:0 20px;border-radius:999px;
+  background:#111;color:#fff;text-decoration:none;
+  display:inline-flex;align-items:center;justify-content:center;gap:14px;
+  font-size:12px;font-weight:500;
+  box-shadow:0 12px 30px rgba(0,0,0,.09);
+  opacity:0;transform:translateY(9px);
+  animation:fadeUp .7s ease .7s forwards;
+  transition:transform .2s ease,box-shadow .2s ease;
+}
+.cta:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(0,0,0,.14)}
+.cta:focus-visible{outline:2px solid #111;outline-offset:5px}
+.arrow{font-size:18px;font-weight:300;line-height:1;transition:transform .2s ease}
+.cta:hover .arrow{transform:translateX(5px)}
+
+.meta{
+  margin-top:9px;font-size:7px;line-height:1.3;letter-spacing:.24em;
+  text-transform:uppercase;white-space:nowrap;opacity:0;
+  animation:fadeUp .65s ease .85s forwards;
+}
+.opening{
+  width:min(335px,65vw);margin-top:clamp(13px,2vh,20px);
+  padding-top:12px;border-top:1px solid rgba(16,16,16,.52);
+  opacity:0;transform:translateY(7px);
+  animation:fadeUp .7s ease .94s forwards;
+}
+.opening-label{font-size:7px;letter-spacing:.28em;text-transform:uppercase;margin-bottom:5px}
+.date{font-family:"Playfair Display",Georgia,serif;font-size:clamp(23px,2.5vw,30px);line-height:1}
+.stay{margin-top:7px;font-size:7px;letter-spacing:.30em;text-transform:uppercase}
+
+@keyframes logoIn{to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+@keyframes lineIn{to{opacity:.72;transform:scaleX(1)}}
+
+@media(max-width:650px){
+  .content{padding:12px 10px}
+  .brand-logo{width:78vw;max-height:23vh;margin-bottom:9px}
+  h1{font-size:clamp(25px,6.1vw,34px);max-width:310px}
+  .divider{margin:11px 0 12px}
+  .cta{height:39px;min-width:68vw;font-size:12px}
+  .meta{font-size:8px;letter-spacing:.16em}
+  .opening{margin-top:15px;padding-top:10px}
+  .date{font-size:22px}
+  .stay{font-size:7px;letter-spacing:.25em}
+}
+@media(max-height:650px){
+  .content{padding:8px}
+  .brand-logo{max-height:22vh;margin-bottom:5px}
+  h1{font-size:clamp(24px,3.4vw,32px)}
+  .divider{margin:6px 0 8px}
+  .cta{height:34px}
+  .meta{margin-top:5px}
+  .opening{margin-top:8px;padding-top:6px}
+  .opening-label{margin-bottom:3px}
+  .date{font-size:20px}
+  .stay{margin-top:4px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{animation:none!important;transition:none!important}
+  .brand-logo,h1,.divider,.cta,.meta,.opening{opacity:1!important;transform:none!important}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <main class="content">
+    <img class="brand-logo" src="logo-transparent.png" alt="ATT MIRE™">
+    <h1>Your Style. Our Next Chapter.</h1>
+    <div class="divider"></div>
+    <a class="cta" href="survey.html" aria-label="Take Survey">
+      <span>Take Survey</span><span class="arrow">→</span>
+    </a>
+    <div class="meta">Takes 3–5 minutes&nbsp;&nbsp; | &nbsp;&nbsp;Your input matters</div>
+    <section class="opening">
+      <div class="opening-label">Opening in</div>
+      <div class="date">January 2027</div>
+      <div class="stay">Stay Tuned</div>
+    </section>
+  </main>
+</div>
+</body>
+</html>
