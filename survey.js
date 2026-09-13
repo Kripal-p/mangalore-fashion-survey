@@ -123,11 +123,11 @@ function bindOptions(){
         const field=group.dataset.field, value=btn.dataset.value;
         if(group.classList.contains("multi")){
           const current=Array.isArray(state.answers[field])?state.answers[field]:[];
-          if(btn.classList.contains("selected")){ setMulti(field,value); btn.classList.remove("selected"); }
+          if(btn.classList.contains("selected")){ setMulti(field,value); btn.classList.remove("selected"); if(field==="firstVisitTriggers") renderTopTrigger(); }
           else {
             const max=group.classList.contains("max3")?3:Infinity;
             if(current.length>=max){ showError(`Please select up to ${max}.`); return; }
-            setMulti(field,value); btn.classList.add("selected");
+            setMulti(field,value); btn.classList.add("selected"); if(field==="firstVisitTriggers") renderTopTrigger();
           }
         } else {
           group.querySelectorAll("button").forEach(b=>b.classList.remove("selected"));
@@ -172,13 +172,21 @@ function renderProducts(){
 
 function renderTopTrigger(){
   const chosen=state.answers.firstVisitTriggers||[];
-  $("topTrigger").innerHTML=chosen.length?chosen.map(v=>{
-    const btn=[...document.querySelectorAll('[data-field="firstVisitTriggers"] button')].find(b=>b.dataset.value===v);
-    return `<button data-value="${v}">${btn?optionText(btn):v}</button>`;
-  }).join(""):`<span class="hint">Select your top 3 reasons above first.</span>`;
+  $("topTrigger").innerHTML=chosen.length
+    ? chosen.map(v=>{
+        const btn=[...document.querySelectorAll('[data-field="firstVisitTriggers"] button')].find(b=>b.dataset.value===v);
+        return `<button data-value="${v}">${btn?optionText(btn):v}</button>`;
+      }).join("")
+    : `<span class="hint">Select your 3 reasons above first.</span>`;
+
   $("topTrigger").querySelectorAll("button").forEach(btn=>{
     btn.classList.toggle("selected",state.answers.topVisitTrigger===btn.dataset.value);
-    btn.onclick=()=>{setValue("topVisitTrigger",btn.dataset.value);$("topTrigger").querySelectorAll("button").forEach(b=>b.classList.remove("selected"));btn.classList.add("selected");clearError()};
+    btn.onclick=()=>{
+      setValue("topVisitTrigger",btn.dataset.value);
+      $("topTrigger").querySelectorAll("button").forEach(b=>b.classList.remove("selected"));
+      btn.classList.add("selected");
+      clearError();
+    };
   });
 }
 
@@ -234,6 +242,7 @@ function validateStep(){
     const v=state.answers[f];
     if(v===undefined || v==="" || (Array.isArray(v)&&!v.length)){showError("Please answer this question before continuing.");return false}
   }
+  if(state.step===5 && (!Array.isArray(state.answers.firstVisitTriggers) || state.answers.firstVisitTriggers.length !== 3)){showError("Please select exactly 3 reasons.");return false}
   if(state.step===7 && state.products.length===0){showError("Please select at least one product.");return false}
   if(state.step===8 && state.products.some(id=>!state.styles[id]?.styles || !state.styles[id]?.looks || !state.styles[id]?.color)){showError("Please complete the style preferences for each selected product.");return false}
   if(state.step===9 && state.products.some(id=>!state.prices[id])){showError("Please choose a price for each selected product.");return false}
