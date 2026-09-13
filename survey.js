@@ -125,7 +125,9 @@ function bindOptions(){
           const current=Array.isArray(state.answers[field])?state.answers[field]:[];
           if(btn.classList.contains("selected")){ setMulti(field,value); btn.classList.remove("selected"); if(field==="firstVisitTriggers") renderTopTrigger(); }
           else {
-            setMulti(field,value); btn.classList.add("selected");
+            const max=group.classList.contains("max3")?3:Infinity;
+            if(current.length>=max){ showError(`Please select up to ${max}.`); return; }
+            setMulti(field,value); btn.classList.add("selected"); if(field==="firstVisitTriggers") renderTopTrigger();
           }
         } else {
           group.querySelectorAll("button").forEach(b=>b.classList.remove("selected"));
@@ -154,7 +156,7 @@ function renderProducts(){
   if(showKids) sections.push(PRODUCT_DATA.children);
   if(showAcc) sections.push(PRODUCT_DATA.accessories);
   $("products").innerHTML=sections.map(sec=>`
-    <div class="q"><label>${sec.label}</label><span class="hint">Select any products you would be most likely to buy from a new store.</span>
+    <div class="q"><label>${sec.label}</label><span class="hint">Choose all that matter.</span>
       <div class="options product-options multi">${sec.products.map(([id,label])=>`<button data-product="${id}">${label}</button>`).join("")}</div>
     </div>`).join("");
   $("products").querySelectorAll("button").forEach(btn=>{
@@ -162,7 +164,7 @@ function renderProducts(){
     btn.onclick=()=>{
       const id=btn.dataset.product, i=state.products.indexOf(id);
       if(i>=0){state.products.splice(i,1);btn.classList.remove("selected")}
-      else {if(state.products.length>=5){showError("Please select up to 5 products.");return} state.products.push(id);btn.classList.add("selected")}
+      else {state.products.push(id);btn.classList.add("selected")}
       clearError();
     };
   });
@@ -227,7 +229,11 @@ function findProductLabel(id){
   return id;
 }
 
-function validateStep(){ clearError(); return true; }
+function validateStep(){
+  // Free navigation: unanswered questions never block moving forward.
+  clearError();
+  return true;
+}
 function showError(msg){$("error").textContent=msg}
 function clearError(){$("error").textContent=""}
 
@@ -239,6 +245,7 @@ function showStep(n){
   $("backBtn").style.visibility=n===1?"hidden":"visible";
   $("nextBtn").textContent="";
   $("nextBtn").innerHTML=n===10?"Submit survey <b>✓</b>":`Continue <b>→</b>`;
+  if(n===5)renderTopTrigger();
   if(n===7)renderProducts();
   if(n===8)renderStyles();
   if(n===9)renderPrices();
