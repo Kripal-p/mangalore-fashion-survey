@@ -38,3 +38,6 @@ The frontend is intentionally anonymous by default. The final contact field is o
 
 ## UI revision
 The landing screen is removed from the DOM when the respondent starts the survey, so its headline cannot appear on subsequent survey screens.
+
+## Navigation behavior
+All survey screens are freely traversable. Respondents may continue without answering, use Back to correct previous answers, and submit without completing every field. The submission contains whatever answers are present.

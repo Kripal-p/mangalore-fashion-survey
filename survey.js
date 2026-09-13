@@ -34,28 +34,28 @@ const PRODUCT_DATA = {
 };
 
 const STYLE_DATA = {
-  men_tshirt:{styles:["Regular fit","Oversized","Relaxed","Polo"],looks:["Minimal","Plain","Printed","Graphic"],colors:["Black","White","Navy","Grey","Earth tones","Bright colours"]},
-  men_shirt:{styles:["Regular fit","Relaxed","Slim fit","Overshirt"],looks:["Solid","Checks","Stripes","Printed"],colors:["White","Blue","Black","Beige","Olive","Other"]},
-  men_jeans:{styles:["Straight","Slim","Relaxed","Tapered"],looks:["Clean","Washed","Distressed","Dark"],colors:["Dark blue","Mid blue","Black","Light blue","Grey"]},
-  men_trousers:{styles:["Straight","Slim","Relaxed","Cargo"],looks:["Formal","Smart casual","Casual","Utility"],colors:["Black","Navy","Beige","Olive","Grey"]},
-  men_shorts:{styles:["Regular","Relaxed","Cargo"],looks:["Plain","Printed","Utility"],colors:["Black","Navy","Beige","Olive"]},
-  men_ethnic:{styles:["Kurta","Kurta set","Casual ethnic shirt","Other"],looks:["Minimal","Traditional","Festive","Contemporary"],colors:["White","Cream","Blue","Black","Earth tones","Bright colours"]},
-  men_overshirt:{styles:["Overshirt","Light jacket","Bomber","Denim jacket"],looks:["Plain","Utility","Minimal","Printed"],colors:["Black","Blue","Olive","Beige","Grey"]},
-  women_top:{styles:["Regular","Relaxed","Fitted","Cropped"],looks:["Minimal","Printed","Textured","Embroidered"],colors:["Black","White","Pastels","Earth tones","Bright colours"]},
-  women_dress:{styles:["Midi","Maxi","Mini","Shirt dress"],looks:["Minimal","Floral","Printed","Solid"],colors:["Black","White","Pastels","Earth tones","Bright colours"]},
-  women_jeans:{styles:["Straight","Wide leg","Slim","Relaxed"],looks:["Clean","Washed","Distressed","Dark"],colors:["Dark blue","Mid blue","Black","Light blue","Grey"]},
-  women_trousers:{styles:["Straight","Wide leg","Slim","Cargo"],looks:["Formal","Smart casual","Casual","Utility"],colors:["Black","Beige","Navy","Grey","Olive"]},
-  women_kurti:{styles:["Straight","A-line","Anarkali","Short kurti"],looks:["Minimal","Printed","Embroidered","Traditional"],colors:["Black","White","Pastels","Earth tones","Bright colours"]},
-  women_ethnic:{styles:["Kurta set","Anarkali set","Co-ord ethnic","Festive set"],looks:["Minimal","Printed","Embroidered","Festive"],colors:["Black","Cream","Pastels","Earth tones","Bright colours"]},
-  women_saree:{styles:["Everyday","Festive","Office","Occasion"],looks:["Minimal","Printed","Woven","Embroidered"],colors:["Black","Cream","Pastels","Earth tones","Bright colours"]},
-  women_coords:{styles:["Casual","Smart casual","Relaxed","Statement"],looks:["Minimal","Printed","Solid","Textured"],colors:["Black","White","Pastels","Earth tones","Bright colours"]},
-  kids_boys:{styles:["T-shirt + shorts","Shirt + shorts","T-shirt + jeans","Set"],looks:["Minimal","Graphic","Printed","Character"],colors:["Blue","Black","White","Bright colours","Earth tones"]},
-  kids_girls:{styles:["Dress","Top + bottom","Set","Ethnic"],looks:["Minimal","Floral","Printed","Character"],colors:["Pink","Purple","Pastels","Bright colours","Earth tones"]},
-  kids_ethnic:{styles:["Kurta set","Lehenga","Festive set","Traditional"],looks:["Minimal","Festive","Embroidered","Printed"],colors:["Cream","Red","Blue","Pastels","Bright colours"]},
-  acc_jewellery:{styles:["Earrings","Necklace","Bracelet","Ring"],looks:["Minimal","Statement","Everyday","Occasion"],colors:["Gold","Silver","Rose gold","Mixed"]},
-  acc_bags:{styles:["Tote","Sling","Shoulder","Backpack"],looks:["Minimal","Structured","Casual","Statement"],colors:["Black","Tan","Brown","Pastels","Bright colours"]},
-  acc_belts:{styles:["Leather-look","Canvas","Braided","Minimal"],looks:["Minimal","Classic","Casual","Statement"],colors:["Black","Brown","Tan","Other"]},
-  acc_caps:{styles:["Baseball","Dad cap","Bucket","Structured"],looks:["Plain","Logo","Graphic","Minimal"],colors:["Black","White","Navy","Beige","Bright colours"]}
+  men_tshirt:{styles:["Regular fit","Oversized","Relaxed","Polo"],looks:["Minimal","Plain","Printed","Graphic"],sizes:["S", "M", "L", "XL", "XXL"]},
+  men_shirt:{styles:["Regular fit","Relaxed","Slim fit","Overshirt"],looks:["Solid","Checks","Stripes","Printed"],sizes:["S", "M", "L", "XL", "XXL"]},
+  men_jeans:{styles:["Straight","Slim","Relaxed","Tapered"],looks:["Clean","Washed","Distressed","Dark"],sizes:["28", "30", "32", "34", "36", "38"]},
+  men_trousers:{styles:["Straight","Slim","Relaxed","Cargo"],looks:["Formal","Smart casual","Casual","Utility"],sizes:["28", "30", "32", "34", "36", "38"]},
+  men_shorts:{styles:["Regular","Relaxed","Cargo"],looks:["Plain","Printed","Utility"],sizes:["S", "M", "L", "XL", "XXL"]},
+  men_ethnic:{styles:["Kurta","Kurta set","Casual ethnic shirt","Other"],looks:["Minimal","Traditional","Festive","Contemporary"],sizes:["S", "M", "L", "XL", "XXL"]},
+  men_overshirt:{styles:["Overshirt","Light jacket","Bomber","Denim jacket"],looks:["Plain","Utility","Minimal","Printed"],sizes:["S", "M", "L", "XL", "XXL"]},
+  women_top:{styles:["Regular","Relaxed","Fitted","Cropped"],looks:["Minimal","Printed","Textured","Embroidered"],sizes:["XS", "S", "M", "L", "XL", "XXL"]},
+  women_dress:{styles:["Midi","Maxi","Mini","Shirt dress"],looks:["Minimal","Floral","Printed","Solid"],sizes:["XS", "S", "M", "L", "XL", "XXL"]},
+  women_jeans:{styles:["Straight","Wide leg","Slim","Relaxed"],looks:["Clean","Washed","Distressed","Dark"],sizes:["26", "28", "30", "32", "34", "36"]},
+  women_trousers:{styles:["Straight","Wide leg","Slim","Cargo"],looks:["Formal","Smart casual","Casual","Utility"],sizes:["26", "28", "30", "32", "34", "36"]},
+  women_kurti:{styles:["Straight","A-line","Anarkali","Short kurti"],looks:["Minimal","Printed","Embroidered","Traditional"],sizes:["S", "M", "L", "XL", "XXL", "3XL"]},
+  women_ethnic:{styles:["Kurta set","Anarkali set","Co-ord ethnic","Festive set"],looks:["Minimal","Printed","Embroidered","Festive"],sizes:["S", "M", "L", "XL", "XXL", "3XL"]},
+  women_saree:{styles:["Everyday","Festive","Office","Occasion"],looks:["Minimal","Printed","Woven","Embroidered"],sizes:["Free size"]},
+  women_coords:{styles:["Casual","Smart casual","Relaxed","Statement"],looks:["Minimal","Printed","Solid","Textured"],sizes:["XS", "S", "M", "L", "XL", "XXL"]},
+  kids_boys:{styles:["T-shirt + shorts","Shirt + shorts","T-shirt + jeans","Set"],looks:["Minimal","Graphic","Printed","Character"],sizes:["2–3Y", "4–5Y", "6–7Y", "8–9Y", "10–11Y", "12–13Y"]},
+  kids_girls:{styles:["Dress","Top + bottom","Set","Ethnic"],looks:["Minimal","Floral","Printed","Character"],sizes:["2–3Y", "4–5Y", "6–7Y", "8–9Y", "10–11Y", "12–13Y"]},
+  kids_ethnic:{styles:["Kurta set","Lehenga","Festive set","Traditional"],looks:["Minimal","Festive","Embroidered","Printed"],sizes:["2–3Y", "4–5Y", "6–7Y", "8–9Y", "10–11Y", "12–13Y"]},
+  acc_jewellery:{styles:["Earrings","Necklace","Bracelet","Ring"],looks:["Minimal","Statement","Everyday","Occasion"],sizes:["Free size"]},
+  acc_bags:{styles:["Tote","Sling","Shoulder","Backpack"],looks:["Minimal","Structured","Casual","Statement"],sizes:["One size"]},
+  acc_belts:{styles:["Leather-look","Canvas","Braided","Minimal"],looks:["Minimal","Classic","Casual","Statement"],sizes:["S", "M", "L", "XL"]},
+  acc_caps:{styles:["Baseball","Dad cap","Bucket","Structured"],looks:["Plain","Logo","Graphic","Minimal"],sizes:["One size"]}
 };
 
 const PRICE_DATA = {
@@ -177,7 +177,7 @@ function renderTopTrigger(){
         const btn=[...document.querySelectorAll('[data-field="firstVisitTriggers"] button')].find(b=>b.dataset.value===v);
         return `<button data-value="${v}">${btn?optionText(btn):v}</button>`;
       }).join("")
-    : `<span class="hint">Select your 3 reasons above first.</span>`;
+    : `<span class="hint">Choose one of the reasons you selected above.</span>`;
 
   $("topTrigger").querySelectorAll("button").forEach(btn=>{
     btn.classList.toggle("selected",state.answers.topVisitTrigger===btn.dataset.value);
@@ -195,7 +195,7 @@ function dynamicCard(id,label,data){
   return `<div class="dynamic-card"><div class="dynamic-title">${label}</div>
     <div class="mini-q"><span class="hint">Fit / format</span><div class="chips">${data.styles.map(x=>`<button data-sid="${id}" data-kind="styles" data-value="${x}" class="${old.styles===x?"selected":""}">${x}</button>`).join("")}</div></div>
     <div class="mini-q"><span class="hint">Look</span><div class="chips">${data.looks.map(x=>`<button data-sid="${id}" data-kind="looks" data-value="${x}" class="${old.looks===x?"selected":""}">${x}</button>`).join("")}</div></div>
-    <div class="mini-q"><span class="hint">Preferred colour</span><div class="palette">${data.colors.map(x=>`<button class="chips swatch ${old.color===x?"selected":""}" data-sid="${id}" data-kind="color" data-value="${x}" title="${x}" style="background:${colour(x)}"></button>`).join("")}</div></div>
+    <div class="mini-q"><span class="hint">Preferred size</span><div class="chips">${(data.sizes||["One size"]).map(x=>`<button data-sid="${id}" data-kind="size" data-value="${x}" class="${old.size===x?"selected":""}">${x}</button>`).join("")}</div></div>
   </div>`;
 }
 function colour(x){
@@ -230,22 +230,8 @@ function findProductLabel(id){
 }
 
 function validateStep(){
+  // Free navigation: unanswered questions never block moving forward.
   clearError();
-  const req={
-    1:["ageGroup","occupation","area"],2:["shopFor","shoppingFrequency","currentStores","tripSpend"],
-    3:["lastPurchaseProducts","lastPurchaseChannel","lastPurchaseSpend"],4:["painPoints"],
-    5:["firstVisitTriggers","topVisitTrigger"],6:["conceptScore","switchReason","travelDistance"],
-    7:[],8:["sizeAvailability"],9:["dealImportance"],10:["locationPreference","returnFactors"]
-  };
-  const fields=req[state.step]||[];
-  for(const f of fields){
-    const v=state.answers[f];
-    if(v===undefined || v==="" || (Array.isArray(v)&&!v.length)){showError("Please answer this question before continuing.");return false}
-  }
-  if(state.step===5 && (!Array.isArray(state.answers.firstVisitTriggers) || state.answers.firstVisitTriggers.length !== 3)){showError("Please select exactly 3 reasons.");return false}
-  if(state.step===7 && state.products.length===0){showError("Please select at least one product.");return false}
-  if(state.step===8 && state.products.some(id=>!state.styles[id]?.styles || !state.styles[id]?.looks || !state.styles[id]?.color)){showError("Please complete the style preferences for each selected product.");return false}
-  if(state.step===9 && state.products.some(id=>!state.prices[id])){showError("Please choose a price for each selected product.");return false}
   return true;
 }
 function showError(msg){$("error").textContent=msg}
@@ -276,11 +262,20 @@ function collectPayload(){
 async function submit(){
   const payload=collectPayload();
   localStorage.setItem("mangaloreFashionSurveySubmitted",state.responseId);
+
   if(APPS_SCRIPT_URL){
     try{
-      await fetch(APPS_SCRIPT_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)});
-    }catch(e){console.warn("Submission request failed",e)}
+      await fetch(APPS_SCRIPT_URL,{
+        method:"POST",
+        mode:"no-cors",
+        headers:{"Content-Type":"text/plain;charset=utf-8"},
+        body:JSON.stringify(payload)
+      });
+    }catch(e){
+      console.warn("Submission request failed",e);
+    }
   }
+
   document.querySelectorAll(".survey-screen").forEach(s=>s.hidden=true);
   $("thanks").hidden=false;
   $("footer").hidden=true;
@@ -289,7 +284,6 @@ async function submit(){
   $("screenNo").textContent="✓";
   $("progress").style.width="100%";
 }
-
 $("startBtn").onclick=()=>{
   // Remove the landing screen completely so its headline can never
   // remain visible or reappear during the survey.
