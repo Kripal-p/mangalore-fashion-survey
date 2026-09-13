@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111111">
+  <meta name="description" content="Mangalore Fashion Survey">
+  <title>Mangalore Fashion Survey</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main id="app">
+  <section id="intro" class="intro screen active">
+    <div class="intro-card">
+      <div class="brand">MANGALORE <span>FASHION SURVEY</span></div>
+      <p class="eyebrow">YOUR CITY. YOUR STYLE.</p>
+      <h1>Help shape the<br>next fashion store<br>in Mangalore.</h1>
+      <p class="lead">Tell us how you shop, what you wish stores did better, and what you'd actually buy.</p>
+      <div class="meta"><span>10 quick screens</span><i>•</i><span>~3–5 minutes</span></div>
+      <button id="startBtn" class="primary">Start survey <b>→</b></button>
+      <p class="privacy">Anonymous by default. Contact details are optional.</p>
+    </div>
+  </section>
+
+  <section id="survey" class="survey-only" hidden>
+    <header class="topbar">
+      <button id="backBtn" class="back" aria-label="Previous screen">←</button>
+      <div class="progress-wrap">
+        <div class="progress-label"><span id="screenNo">1</span> / 10</div>
+        <div class="track"><div id="progress"></div></div>
+      </div>
+      <div class="mark">MLR</div>
+    </header>
+
+    <div id="screens">
+
+      <section class="survey-screen" data-step="1">
+        <p class="eyebrow">01 · ABOUT YOU</p><h2>Let's start with you.</h2>
+        <p class="sub">Just a few basics about who we're hearing from.</p>
+        <div class="q"><label>Which age group are you in?</label><div class="options" data-field="ageGroup">
+          <button data-value="under_18">Under 18</button><button data-value="18_24">18–24</button><button data-value="25_34">25–34</button><button data-value="35_44">35–44</button><button data-value="45_54">45–54</button><button data-value="55_plus">55+</button>
+        </div></div>
+        <div class="q"><label>Which best describes you?</label><div class="options" data-field="occupation">
+          <button data-value="student">Student</button><button data-value="working">Working professional</button><button data-value="business">Business / self-employed</button><button data-value="homemaker">Homemaker</button><button data-value="other">Other</button>
+        </div></div>
+        <div class="q"><label for="area">Which part of Mangalore do you live, study or work in?</label>
+          <select id="area" data-field="area"><option value="">Select an area</option><option>Central Mangalore</option><option>Kadri</option><option>Bejai</option><option>Kottara</option><option>Kankanady</option><option>Hampankatta</option><option>Balmatta</option><option>Derebail</option><option>Surathkal</option><option>Thokkottu / Ullal</option><option>Other</option></select>
+        </div>
+      </section>
+
+      <section class="survey-screen" data-step="2" hidden>
+        <p class="eyebrow">02 · HOW YOU SHOP</p><h2>Tell us about your shopping habits.</h2>
+        <div class="q"><label>Who do you usually shop for?</label><span class="hint">Select all that apply.</span><div class="options multi" data-field="shopFor">
+          <button data-value="myself">Myself</button><button data-value="partner">Partner / spouse</button><button data-value="children">Children</button><button data-value="parents">Parents</button><button data-value="whole_family">Whole family</button><button data-value="other">Others</button>
+        </div></div>
+        <div class="q"><label>How often do you buy clothes?</label><div class="options" data-field="shoppingFrequency">
+          <button data-value="monthly">Monthly or more</button><button data-value="2_3_months">Every 2–3 months</button><button data-value="3_6_months">3–6 times a year</button><button data-value="1_2_year">1–2 times a year</button><button data-value="only_needed">Only when needed</button>
+        </div></div>
+        <div class="q"><label>Where do you usually shop?</label><span class="hint">Select all that apply.</span><div class="options multi" data-field="currentStores">
+          <button data-value="zudio">Zudio</button><button data-value="max">Max</button><button data-value="trends">Trends</button><button data-value="westside">Westside</button><button data-value="hm">H&amp;M</button><button data-value="lifestyle">Lifestyle</button><button data-value="local">Local stores</button><button data-value="boutique">Boutiques</button><button data-value="social">Instagram / social media</button><button data-value="online">Myntra / Ajio / other online</button><button data-value="other">Other</button>
+        </div></div>
+        <div class="q"><label>How much do you usually spend on a clothing-shopping trip?</label><div class="options" data-field="tripSpend">
+          <button data-value="under_500">Under ₹500</button><button data-value="500_999">₹500–999</button><button data-value="1000_1999">₹1,000–1,999</button><button data-value="2000_3999">₹2,000–3,999</button><button data-value="4000_6999">₹4,000–6,999</button><button data-value="7000_plus">₹7,000+</button>
+        </div></div>
+      </section>
+
+      <section class="survey-screen" data-step="3" hidden>
+        <p class="eyebrow">03 · LAST PURCHASE</p><h2>Think about the last time you bought clothes.</h2><p class="sub">We're more interested in what you actually did than what you think you'd do.</p>
+        <div class="q"><label>What did you buy?</label><div class="options multi" data-field="lastPurchaseProducts">
+          <button data-value="tshirt">T-shirt</button><button data-value="shirt">Shirt</button><button data-value="jeans">Jeans</button><button data-value="trousers">Trousers</button><button data-value="dress">Dress</button><button data-value="top">Top</button><button data-value="kurti">Kurti / ethnic</button><button data-value="saree">Saree</button><button data-value="kidswear">Kidswear</button><button data-value="accessories">Accessories</button><button data-value="other">Other</button>
+        </div></div>
+        <div class="q"><label>Where did you buy it?</label><div class="options" data-field="lastPurchaseChannel">
+          <button data-value="mall_chain">Mall / chain store</button><button data-value="local_store">Local clothing store</button><button data-value="boutique">Boutique</button><button data-value="online">Online</button><button data-value="other">Other</button>
+        </div></div>
+        <div class="q"><label>Approximately how much did you spend?</label><div class="options" data-field="lastPurchaseSpend">
+          <button data-value="under_500">Under ₹500</button><button data-value="500_999">₹500–999</button><button data-value="1000_1499">₹1,000–1,499</button><button data-value="1500_2499">₹1,500–2,499</button><button data-value="2500_plus">₹2,500+</button>
+        </div></div>
+      </section>
+
+      <section class="survey-screen" data-step="4" hidden>
+        <p class="eyebrow">04 · WHAT'S MISSING?</p><h2>What frustrates you most?</h2><p class="sub">Select up to 3.</p>
+        <div class="q"><div class="options multi max3" data-field="painPoints">
+          <button data-value="high_prices">Prices are too high</button><button data-value="poor_value">Quality doesn't match the price</button><button data-value="same_designs">Same designs everywhere</button><button data-value="not_fresh">Not enough new designs</button><button data-value="poor_fit">Poor fitting</button><button data-value="size_unavailable">My size isn't available</button><button data-value="limited_variety">Not enough variety</button><button data-value="crowded">Stores are too crowded</button><button data-value="service">Staff / service isn't good</button><button data-value="parking">Difficult parking / location</button><button data-value="limited_kids">Limited kids' selection</button><button data-value="not_one_roof">Men's, women's and kids aren't together</button><button data-value="weak_offers">Discounts aren't attractive</button><button data-value="nothing">Nothing — I'm happy with current options</button><button data-value="other">Other</button>
+        </div></div>
+        <div class="q"><label for="improve">If you could improve ONE thing about clothing shopping in Mangalore, what would it be?</label><textarea id="improve" data-field="improveShopping" placeholder="Tell us in your own words..."></textarea></div>
+      </section>
+
+      <section class="survey-screen" data-step="5" hidden>
+        <p class="eyebrow">05 · THE NEW STORE TEST</p><h2>Imagine a new fashion store opens in Mangalore.</h2>
+        <p class="sub">Men's, women's and kids' fashion, curated collections, regular new arrivals and affordable-to-mid-range pricing.</p>
+        <div class="q"><label>What would make you visit it for the first time?</label><span class="hint">Select up to 3.</span><div class="options multi max3" data-field="firstVisitTriggers">
+          <button data-value="better_prices">Better prices</button><button data-value="better_quality">Better quality for the price</button><button data-value="fresh_designs">Fresh designs</button><button data-value="unique_designs">Designs I don't see everywhere</button><button data-value="weekly_new">New arrivals every week</button><button data-value="family_one_roof">Men's + women's + kids under one roof</button><button data-value="sizes">Better size availability</button><button data-value="fit">Better fitting</button><button data-value="ambience">Attractive store ambience</button><button data-value="location">Convenient location</button><button data-value="parking">Easy parking</button><button data-value="staff">Helpful staff</button><button data-value="opening_offer">Opening offers</button><button data-value="loyalty">Loyalty rewards</button><button data-value="instagram">Strong Instagram presence</button><button data-value="unique_local">Unique / local collections</button><button data-value="other">Other</button>
+        </div></div>
+        <div class="q"><label>Which ONE matters most to you?</label><div id="topTrigger" class="options" data-field="topVisitTrigger"></div><span class="hint">Choose from the options you selected above.</span></div>
+      </section>
+
+      <section class="survey-screen" data-step="6" hidden>
+        <p class="eyebrow">06 · WOULD YOU CHOOSE IT?</p><h2>Would you give a new store a chance?</h2>
+        <div class="q"><label>How likely would you be to visit a new store like this?</label>
+          <div class="ratings" data-field="conceptScore"><button data-value="1"><b>1</b><span>Definitely wouldn't</span></button><button data-value="2"><b>2</b><span>Unlikely</span></button><button data-value="3"><b>3</b><span>Maybe</span></button><button data-value="4"><b>4</b><span>Likely</span></button><button data-value="5"><b>5</b><span>Definitely would</span></button></div>
+        </div>
+        <div class="q"><label>What would make you choose a new store instead of your usual store?</label><div class="options" data-field="switchReason">
+          <button data-value="lower_price">Lower price</button><button data-value="better_quality">Better quality</button><button data-value="better_designs">Better designs</button><button data-value="better_fit">Better fitting</button><button data-value="more_sizes">More sizes</button><button data-value="more_variety">More variety</button><button data-value="frequent_new">New collections frequently</button><button data-value="experience">Better shopping experience</button><button data-value="location">Convenient location</button><button data-value="family">Family shopping</button><button data-value="unique">Something unique</button><button data-value="dont_switch">I generally don't switch stores</button>
+        </div></div>
+        <div class="q"><label>How far would you travel for a store you really like?</label><div class="options" data-field="travelDistance">
+          <button data-value="under_2km">&lt;2 km</button><button data-value="2_5km">2–5 km</button><button data-value="5_10km">5–10 km</button><button data-value="10_plus">10+ km</button>
+        </div></div>
+      </section>
+
+      <section class="survey-screen" data-step="7" hidden>
+        <p class="eyebrow">07 · WHAT WOULD YOU BUY?</p><h2>Now let's talk about actual products.</h2><p class="sub">Select up to 5 products you would be most likely to buy from a new store.</p>
+        <div id="products"></div>
+      </section>
+
+      <section class="survey-screen" data-step="8" hidden>
+        <p class="eyebrow">08 · YOUR STYLE</p><h2>What do you actually prefer?</h2><p class="sub">These questions appear only for the products you selected.</p>
+        <div id="styles"></div>
+      </section>
+
+      <section class="survey-screen" data-step="9" hidden>
+        <p class="eyebrow">09 · PRICE</p><h2>What price feels right?</h2><p class="sub">We'll only ask about the products you selected.</p>
+        <div id="prices"></div>
+        <div class="q"><label>How important is getting a good deal?</label><div class="ratings" data-field="dealImportance"><button data-value="1"><b>1</b><span>Not important</span></button><button data-value="2"><b>2</b><span></span></button><button data-value="3"><b>3</b><span>Moderate</span></button><button data-value="4"><b>4</b><span></span></button><button data-value="5"><b>5</b><span>Extremely important</span></button></div></div>
+      </section>
+
+      <section class="survey-screen" data-step="10" hidden>
+        <p class="eyebrow">10 · YOUR IDEAL STORE</p><h2>One last thing.</h2>
+        <div class="q"><label>Which would make you more likely to visit?</label><div class="options" data-field="locationPreference"><button data-value="closer">A store very close to me</button><button data-value="better_farther">A better store even if I have to travel</button></div></div>
+        <div class="q"><label>What would make you return regularly?</label><span class="hint">Select up to 3.</span><div class="options multi max3" data-field="returnFactors">
+          <button data-value="new_arrivals">New arrivals frequently</button><button data-value="good_prices">Good prices</button><button data-value="quality">Consistent quality</button><button data-value="loyalty">Loyalty rewards</button><button data-value="seasonal">Seasonal collections</button><button data-value="service">Good customer service</button><button data-value="sizes">My size is always available</button><button data-value="location">Easy parking / location</button><button data-value="family">Family shopping convenience</button><button data-value="unique">Unique products</button><button data-value="instagram">Instagram updates / new drops</button>
+        </div></div>
+        <div class="q"><label for="finalMessage">If you could tell a new clothing store ONE thing before it opens in Mangalore, what would you say?</label><textarea id="finalMessage" data-field="finalMessage" placeholder="Your honest advice..."></textarea></div>
+        <div class="q optional"><span class="optional-tag">OPTIONAL</span><label for="contact">Want to know when we launch?</label><input id="contact" data-field="contact" placeholder="WhatsApp number or Instagram handle"></div>
+      </section>
+
+      <section id="thanks" hidden>
+        <div class="thanks-icon">✓</div><p class="eyebrow">THANK YOU</p>
+        <h2>You just helped shape<br>what comes next in Mangalore.</h2>
+        <p class="sub">Your answers will help us understand what people actually want from their next fashion store.</p>
+        <div class="response-id"><span>Your response ID</span><strong id="responseId"></strong></div>
+      </section>
+    </div>
+
+    <footer id="footer">
+      <div id="error" aria-live="polite"></div>
+      <button id="nextBtn" class="primary">Continue <b>→</b></button>
+    </footer>
+  </section>
+</main>
+<script src="survey.js" defer></script>
+</body>
+</html>
