@@ -229,11 +229,7 @@ function findProductLabel(id){
   return id;
 }
 
-function validateStep(){
-  // Free navigation: unanswered questions never block moving forward.
-  clearError();
-  return true;
-}
+function validateStep(){ clearError(); return true; }
 function showError(msg){$("error").textContent=msg}
 function clearError(){$("error").textContent=""}
 
