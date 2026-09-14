@@ -12,3 +12,4 @@ Removed: last-purchase questions, fit/style/pattern screen, separate store-choic
 Keep the existing Apps Script `/exec` URL. After updating `Code.gs`, redeploy the Web App as a new version while retaining the same URL if possible.
 
 Note: Google Apps Script backend files should remain `.gs`; therefore the backend is named `Code.gs`, while the frontend file is `genericSurvey.js`.
+//
