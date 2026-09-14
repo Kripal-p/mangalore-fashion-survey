@@ -1,4 +1,4 @@
-const APPS_SCRIPT_URL="https://script.google.com/macros/s/AKfycbxnXzZAKdDevHjD6vxHhMJZNQCFkAiQ4ip0PxkFwxC4JSudEBjj5q5e2RXiC8aNCHHu/exec";
+const APPS_SCRIPT_URL="https://script.google.com/macros/s/AKfycbys0dJ8XEdqQ36twmXKhqBDTdtwdb09bj851T97vWPa1PuLsDWl9gMPG9RSGYvbN069/exec";
 const PRODUCT_DATA={men:{label:"Men's fashion",products:[["men_tshirt","T-shirts"],["men_shirt","Shirts"],["men_jeans","Jeans"],["men_trousers","Trousers / chinos"],["men_shorts","Shorts"],["men_ethnic","Ethnic wear"],["men_overshirt","Overshirts / jackets"]]},women:{label:"Women's fashion",products:[["women_top","Tops"],["women_dress","Dresses"],["women_jeans","Jeans"],["women_trousers","Trousers"],["women_kurti","Kurtis"],["women_ethnic","Ethnic sets"],["women_saree","Sarees"],["women_coords","Co-ords"]]},children:{label:"Children's fashion",products:[["kids_boys","Boys casual"],["kids_girls","Girls casual"],["kids_ethnic","Kids ethnic"]]},accessories:{label:"Accessories",products:[["acc_jewellery","Jewellery"],["acc_bags","Bags"],["acc_belts","Belts"],["acc_caps","Caps"]]}};
 const PRICE_DATA={men_tshirt:["₹299–399","₹400–599","₹600–799","₹800+"],men_shirt:["₹499–699","₹700–999","₹1,000–1,499","₹1,500+"],men_jeans:["₹799–999","₹1,000–1,499","₹1,500–1,999","₹2,000+"],men_trousers:["₹699–899","₹900–1,199","₹1,200–1,599","₹1,600+"],men_shorts:["₹399–599","₹600–799","₹800–999","₹1,000+"],men_ethnic:["₹599–799","₹800–1,199","₹1,200–1,599","₹1,600+"],men_overshirt:["₹699–999","₹1,000–1,499","₹1,500–1,999","₹2,000+"],women_top:["₹399–599","₹600–899","₹900–1,299","₹1,300+"],women_dress:["₹699–999","₹1,000–1,499","₹1,500–1,999","₹2,000+"],women_jeans:["₹799–999","₹1,000–1,499","₹1,500–1,999","₹2,000+"],women_trousers:["₹699–999","₹1,000–1,399","₹1,400–1,799","₹1,800+"],women_kurti:["₹499–699","₹700–999","₹1,000–1,499","₹1,500+"],women_ethnic:["₹799–999","₹1,000–1,499","₹1,500–1,999","₹2,000+"],women_saree:["₹699–999","₹1,000–1,499","₹1,500–2,499","₹2,500+"],women_coords:["₹799–999","₹1,000–1,499","₹1,500–1,999","₹2,000+"],kids_boys:["₹299–399","₹400–599","₹600–899","₹900+"],kids_girls:["₹299–399","₹400–599","₹600–899","₹900+"],kids_ethnic:["₹399–599","₹600–899","₹900–1,199","₹1,200+"],acc_jewellery:["₹199–399","₹400–699","₹700–999","₹1,000+"],acc_bags:["₹299–499","₹500–799","₹800–1,199","₹1,200+"],acc_belts:["₹199–399","₹400–599","₹600–799","₹800+"],acc_caps:["₹199–299","₹300–499","₹500–699","₹700+"]};
 const state={step:1,responseId:makeId(),answers:{shopFor:[],currentStores:[],storeExpectations:[]},products:[],prices:{}};
@@ -6,9 +6,29 @@ const $=id=>document.getElementById(id),screens=[...document.querySelectorAll(".
 $("screenTotal").textContent=total;
 function makeId(){let d=new Date(),s="";for(let i=0;i<6;i++)s+="ABCDEFGHJKLMNPQRSTUVWXYZ23456789"[Math.floor(Math.random()*32)];return`GFS-${d.getFullYear()}${String(d.getMonth()+1).padStart(2,"0")}${String(d.getDate()).padStart(2,"0")}-${s}`}
 function bindOptions(){document.querySelectorAll(".options").forEach(g=>{let f=g.dataset.field,m=g.classList.contains("multi");g.querySelectorAll("button").forEach(b=>b.onclick=()=>{let v=b.dataset.value;if(m){let a=Array.isArray(state.answers[f])?[...state.answers[f]]:[],i=a.indexOf(v);i>=0?(a.splice(i,1),b.classList.remove("selected")):(a.push(v),b.classList.add("selected"));state.answers[f]=a}else{g.querySelectorAll("button").forEach(x=>x.classList.remove("selected"));b.classList.add("selected");state.answers[f]=v}clearError()})});document.querySelectorAll("[data-field]").forEach(e=>{if(e.tagName==="TEXTAREA"||e.tagName==="INPUT")e.oninput=()=>state.answers[e.dataset.field]=e.value})}
+
+const PRODUCT_CATEGORIES = {
+  men: "Men’s",
+  women: "Women’s",
+  children: "Kids’",
+  accessories: "Accessories"
+};
+
+function productCategory(id) {
+  for (const [key, group] of Object.entries(PRODUCT_DATA)) {
+    if (group.products.some(([pid]) => pid === id)) return key;
+  }
+  return "";
+}
+
+function displayProductLabel(id) {
+  const category = PRODUCT_CATEGORIES[productCategory(id)] || "";
+  return category ? `${category} ${label(id)}` : label(id);
+}
+
 function renderProducts(){let s=new Set(state.products);$("products").innerHTML=Object.values(PRODUCT_DATA).map(x=>`<div class="product-section"><h3>${x.label}</h3><div class="product-grid">${x.products.map(([id,l])=>`<button class="product-card ${s.has(id)?"selected":""}" data-p="${id}"><span class="check">✓</span>${l}</button>`).join("")}</div></div>`).join("");$("products").querySelectorAll("[data-p]").forEach(b=>b.onclick=()=>{let id=b.dataset.p,i=state.products.indexOf(id);if(i>=0){state.products.splice(i,1);delete state.prices[id];b.classList.remove("selected")}else{state.products.push(id);b.classList.add("selected")}})}
 function label(id){for(let x of Object.values(PRODUCT_DATA)){let p=x.products.find(a=>a[0]===id);if(p)return p[1]}return id}
-function renderPrices(){$("prices").innerHTML=state.products.length?state.products.map(id=>`<div class="dynamic-card"><div class="dynamic-title">${label(id)}</div><div class="price-grid">${(PRICE_DATA[id]||["₹499–699","₹700–999","₹1,000–1,499","₹1,500+"]).map(v=>`<button data-id="${id}" data-v="${v}" class="${state.prices[id]===v?"selected":""}">${v}</button>`).join("")}</div></div>`).join(""):`<div class="empty-note">No products selected. You can still continue.</div>`;$("prices").querySelectorAll("button").forEach(b=>b.onclick=()=>{state.prices[b.dataset.id]=b.dataset.v;b.parentElement.querySelectorAll("button").forEach(x=>x.classList.remove("selected"));b.classList.add("selected")})}
+function renderPrices(){$("prices").innerHTML=state.products.length?state.products.map(id=>`<div class="dynamic-card"><div class="dynamic-title">${displayProductLabel(id)}</div><div class="price-grid">${(PRICE_DATA[id]||["₹499–699","₹700–999","₹1,000–1,499","₹1,500+"]).map(v=>`<button data-id="${id}" data-v="${v}" class="${state.prices[id]===v?"selected":""}">${v}</button>`).join("")}</div></div>`).join(""):`<div class="empty-note">No products selected. You can still continue.</div>`;$("prices").querySelectorAll("button").forEach(b=>b.onclick=()=>{state.prices[b.dataset.id]=b.dataset.v;b.parentElement.querySelectorAll("button").forEach(x=>x.classList.remove("selected"));b.classList.add("selected")})}
 function clearError(){$("error").textContent=""}
 function showStep(n){state.step=n;screens.forEach(s=>s.hidden=+s.dataset.step!==n);$("screenNo").textContent=n;$("progress").style.width=n/total*100+"%";$("backBtn").style.visibility=n===1?"hidden":"visible";$("nextBtn").innerHTML=n===total?"Submit survey <b>✓</b>":"Continue <b>→</b>";if(n===4)renderProducts();if(n===5)renderPrices();scrollTo({top:0,behavior:"smooth"})}
 function payload(){return{responseId:state.responseId,timestamp:new Date().toISOString(),...state.answers,selectedProducts:state.products.map(id=>({id,label:label(id),price:state.prices[id]||""})),source:"generic-fashion-survey",surveyVersion:"3.0"}}
